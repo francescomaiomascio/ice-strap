@@ -1,0 +1,11 @@
+type: object
+properties:
+  theme: { type: string }
+  pager: { type: boolean }
+  colors: { type: boolean }
+
+  table:
+    type: object
+    properties:
+      max_width: { type: number }
+      show_lines: { type: boolean }

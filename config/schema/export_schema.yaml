@@ -1,0 +1,6 @@
+type: object
+properties:
+  autocomplete: { type: boolean }
+
+  history_file: { type: string }
+  history_size: { type: number }
