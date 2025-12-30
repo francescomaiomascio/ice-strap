@@ -2,12 +2,15 @@ from pathlib import Path
 from typing import Dict, Any
 import os
 
-def resolve_paths(cfg: Dict[str, Any], project_root: Path) -> Dict[str, Any]:
+
+def resolve_paths(cfg: Dict[str, Any]) -> Dict[str, Any]:
     """
     Normalizza tutti i path:
     - ~
-    - path relativi
+    - path relativi (./) rispetto al project root
     """
+
+    project_root = Path.cwd()
 
     def _resolve(val):
         if isinstance(val, str):

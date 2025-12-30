@@ -1,0 +1,262 @@
+# =============================================================================
+# ICE STUDIO — GLOBAL CONFIGURATION (DEFAULT)
+# =============================================================================
+
+app:
+  name: "ICE Studio"
+  version: "1.0.0"
+  data_dir: "~/.ice_studio"
+
+# =============================================================================
+# STORAGE
+# =============================================================================
+storage:
+  backend: "sqlite"
+  default_workspace: "default"
+
+  sqlite:
+    journal_mode: "WAL"
+    synchronous: "NORMAL"
+    cache_size: 10000
+
+  duckdb:
+    memory_limit: "2GB"
+    threads: 4
+
+  mysql:
+    host: "localhost"
+    port: 3306
+    user: "ice"
+    password: "secret"
+    database: "ice_studio"
+
+  mariadb:
+    host: "localhost"
+    port: 3306
+    user: "ice"
+    password: "secret"
+    database: "ice_studio"
+
+  postgres:
+    host: "localhost"
+    port: 5432
+    user: "ice"
+    password: "secret"
+    database: "ice_studio"
+
+# =============================================================================
+# RUNTIME TOPOLOGY (GLOBAL ICE STUDIO ONLY)
+# =============================================================================
+runtime:
+  mode: "local"        # local | remote | cloud | manual
+  profile: "dev"       # dev | prod
+
+  backend:
+    host: "127.0.0.1"
+    port: 7030
+
+  ai:
+    strategy: "shared"                     # shared | per_workspace
+    global_policy: "freeze_on_workspace"   # freeze_on_workspace | always_on | always_off
+
+    llm:
+      provider: "llama_cpp_http"            # llama_cpp_http | openai_compat | ollama | disabled
+      start: "auto"                         # auto | never
+      host: "local"                         # local | remote | cloud
+
+      local:
+        base_url: "http://127.0.0.1:8001/v1"
+        health_url: "http://127.0.0.1:8001/health"
+
+      remote:
+        address: "192.168.1.50"
+        port: 8001
+        token: ""
+
+    embeddings:
+      provider: "local_gguf"                # local_gguf | llama_cpp_http | disabled
+      start: "auto"
+      host: "local"
+
+      local:
+        base_url: "http://127.0.0.1:8100/v1"
+        health_url: "http://127.0.0.1:8100/health"
+
+      remote:
+        address: "192.168.1.50"
+        port: 8100
+        token: ""
+
+
+
+# =============================================================================
+# NETWORK / TOPOLOGY
+# =============================================================================
+network:
+  mode: "direct"            # direct | lan | vpn | cloud
+  node_id: "ice-macbook-fr"
+
+  discovery:
+    enabled: true
+    method: "mdns"          # mdns | manual | cloud
+
+  vpn:
+    enabled: false
+    provider: "wireguard"   # wireguard | disabled
+
+    role: "client"          # client | server
+    interface: "wg0"
+
+    endpoint:
+      address: "myhome.ddns.net"
+      port: 51820
+
+    keys:
+      private_key: "~/.ice_studio/keys/wg_private.key"
+      public_key: "~/.ice_studio/keys/wg_public.key"
+
+    peers:
+      - name: "home-workstation"
+        public_key: "BASE64KEY=="
+        allowed_ips:
+          - "10.42.0.2/32"
+        resources:
+          llm: true
+          embeddings: true
+          cpu: true
+          ram: true
+
+    security:
+      require_pairing: true
+      require_confirmation: true
+      
+# =============================================================================
+# PARSING
+# =============================================================================
+parsing:
+  batch_size: 1000
+  max_line_length: 10000
+  encoding: "utf-8"
+
+  date_formats:
+    - "%Y-%m-%d %H:%M:%S"
+    - "%Y/%m/%d %H:%M:%S"
+    - "%d/%b/%Y:%H:%M:%S %z"
+    - "%b %d %H:%M:%S"
+
+  detection:
+    confidence_threshold: 0.7
+    max_patterns: 1000
+
+# =============================================================================
+# DISPLAY / CLI
+# =============================================================================
+display:
+  theme: "ice-dark"
+  pager: true
+  colors: true
+
+  table:
+    max_width: 120
+    show_lines: true
+
+cli:
+  autocomplete: true
+  history_file: "~/.ice_studio/history"
+  history_size: 1000
+
+# =============================================================================
+# EXPORT
+# =============================================================================
+export:
+  formats: [json, csv, html, parquet]
+  default_format: "json"
+  compression: false
+
+# =============================================================================
+# MACHINE LEARNING (GENERIC)
+# =============================================================================
+ml:
+  enabled: false
+  model: "all-MiniLM-L6-v2"
+  embedding_dim: 384
+
+  clustering:
+    algorithm: "kmeans"
+    n_clusters: 10
+
+  anomaly_detection:
+    threshold: 0.8
+
+# =============================================================================
+# LOGGING
+# =============================================================================
+logging:
+  level: "INFO"
+  file: "~/.ice_studio/ice_studio.log"
+  max_size: "10MB"
+  backup_count: 5
+
+# =============================================================================
+# PERFORMANCE
+# =============================================================================
+performance:
+  max_workers: 4
+  chunk_size: 10000
+  cache_enabled: true
+  cache_size: 1000
+
+# =============================================================================
+# FEATURES
+# =============================================================================
+features:
+  realtime_monitoring: true
+  pattern_learning: true
+  smart_suggestions: true
+  ai_insights: false
+
+# =============================================================================
+# VECTOR STORE
+# =============================================================================
+vector:
+  backend: "faiss"
+  persist_path: "~/.ice_studio/vector"
+  dimension: 384
+  distance: "cosine"
+
+default_backends:
+  relational: sqlite
+  vector: faiss
+
+# =============================================================================
+# EMBEDDINGS — MODEL DEFINITION (REUSABLE, WORKSPACE OVERRIDABLE)
+# =============================================================================
+embeddings:
+  provider: "local_gguf"
+  model: "./models/embeddings/bge-small-en-v1.5.Q4_K_M.gguf"
+  dimension: 384
+  n_threads: 6
+  gpu_layers: 0
+
+# =============================================================================
+# LLM — SERVER / MODEL DEFINITION
+# =============================================================================
+llm:
+  model: "./models/qwen/qwen2.5-coder-7b-instruct-q4_k_m-00001-of-00002.gguf"
+  ctx: 32768
+  gpu_layers: 99
+  batch: 8
+
+# =============================================================================
+# CODE MODEL — INFERENCE CONFIG (ASSISTENTE GLOBALE / WORKSPACE)
+# =============================================================================
+codemodel:
+  backend: "llama_cpp_http"
+  model_id: "qwen2.5-coder-7b-instruct"
+  temperature: 0.2
+  max_tokens: 2048
+  n_threads: 8
+  n_gpu_layers: 64
+  top_p: 0.95
+  top_k: 40
+  local_model_path: "./models/qwen/qwen2.5-coder-7b-instruct-q4_k_m-00001-of-00002.gguf"
