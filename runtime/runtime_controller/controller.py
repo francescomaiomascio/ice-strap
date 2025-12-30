@@ -9,7 +9,7 @@ import subprocess
 import sys
 import time
 
-from engine.logging.router import get_logger
+from ice_core.logging.router import get_logger
 from engine.system.ai_runtime.launcher import spawn_llama_launcher
 
 from .topology import load_decision

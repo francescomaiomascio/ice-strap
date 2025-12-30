@@ -4,7 +4,7 @@ import os
 import sys
 from pathlib import Path
 
-from engine.logging.router import get_logger
+from ice_core.logging.router import get_logger
 from engine.runtime_controller.controller import RuntimeController
 
 
