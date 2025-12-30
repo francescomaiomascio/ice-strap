@@ -3,7 +3,7 @@ from __future__ import annotations
 import os
 from pathlib import Path
 
-from engine.logging.bootstrap import init_logging_pipeline
+from ice_core.logging.bootstrap import init_logging_pipeline
 
 
 def init_runtime_commit() -> Path:

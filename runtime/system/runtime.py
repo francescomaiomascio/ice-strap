@@ -11,8 +11,8 @@ from typing import Optional, Dict, Any
 from engine.backend.ws_server import IceWSServer
 from engine.agents.domain.system_agent import SystemAgent
 from engine.preboot.state import DECISION, STATE
-from engine.logging.api import set_phase
-from engine.logging.router import get_logger
+from ice_core.logging.api import set_phase
+from ice_core.logging.router import get_logger
 from engine.system.ai_runtime.manager import AIExecutionManager
 
 logger = get_logger("backend", "core", "ice.system.runtime")

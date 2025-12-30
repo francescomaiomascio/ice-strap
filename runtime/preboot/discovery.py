@@ -1,5 +1,5 @@
 from __future__ import annotations
-from engine.logging.router import get_logger
+from ice_core.logging.router import get_logger
 # src/ice_studio/preboot/discovery.py
 
 import platform

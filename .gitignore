@@ -421,3 +421,5 @@ benchmark_results/
 *.csv
 !tests/fixtures/*.csv
 !docs/examples/*.csv
+__pycache__/
+*.pyc

@@ -1,5 +1,5 @@
 from typing import Any, Dict, List
-from engine.logging.router import get_logger
+from ice_core.logging.router import get_logger
 
 MIN_RAM_SAFE_GB = 6
 MIN_RAM_CPU_ONLY_GB = 12

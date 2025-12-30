@@ -5,7 +5,7 @@ from typing import Dict, List, Set
 
 from engine.network.udp_discovery import udp_discovery
 from engine.security.pairing import load_trusted_hosts, list_pairings
-from engine.logging.router import get_logger
+from ice_core.logging.router import get_logger
 
 log = get_logger("icenet", "discovery", "ice.preboot.discovery")
 

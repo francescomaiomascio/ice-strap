@@ -11,7 +11,7 @@ from typing import Any, Dict, List, Set
 from fastapi import APIRouter, HTTPException
 from fastapi.responses import JSONResponse
 
-from engine.logging.router import get_logger
+from ice_core.logging.router import get_logger
 from engine.preboot.context import get_preboot_context
 from engine.preboot.discovery_v2 import discover_lan
 from engine.preboot.runtime import init_runtime_commit

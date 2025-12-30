@@ -6,7 +6,7 @@ import time
 from pathlib import Path
 from typing import Any, Dict, Optional
 
-from engine.logging.router import get_logger
+from ice_core.logging.router import get_logger
 from engine.preboot.state import DECISION
 
 from .health import AIServerHealth, wait_until_ready

@@ -4,7 +4,7 @@ import os
 import platform
 import subprocess
 from typing import Any, Dict, Optional
-from engine.logging.router import get_logger
+from ice_core.logging.router import get_logger
 
 try:
     import psutil  # type: ignore

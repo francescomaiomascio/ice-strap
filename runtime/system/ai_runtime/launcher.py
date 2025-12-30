@@ -5,7 +5,7 @@ import subprocess
 from pathlib import Path
 from typing import Dict
 
-from engine.logging.router import get_logger
+from ice_core.logging.router import get_logger
 
 log = get_logger("runtime", "llm", "ai_runtime.launcher")
 
