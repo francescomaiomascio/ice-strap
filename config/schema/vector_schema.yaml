@@ -1,0 +1,14 @@
+type: object
+properties:
+  backend:
+    type: string
+    enum: ["chromadb", "faiss"]
+
+  persist_path:
+    type: string
+
+  dimension:
+    type: number
+
+  distance:
+    type: string

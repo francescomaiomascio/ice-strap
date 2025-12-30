@@ -1,0 +1,16 @@
+type: object
+properties:
+  enabled: { type: boolean }
+  model: { type: string }
+  embedding_dim: { type: number }
+
+  clustering:
+    type: object
+    properties:
+      algorithm: { type: string }
+      n_clusters: { type: number }
+
+  anomaly_detection:
+    type: object
+    properties:
+      threshold: { type: number }

@@ -1,0 +1,27 @@
+type: object
+properties:
+  backend:
+    type: string
+    enum: ["dummy", "llama_cpp_http"]
+
+  model_id:
+    type: string
+
+  base_url:
+    type: [string, "null"]
+
+  api_key:
+    type: [string, "null"]
+
+  local_model_path:
+    type: [string, "null"]
+
+  max_tokens:
+    type: number
+
+  temperature:
+    type: number
+
+required:
+  - backend
+  - model_id

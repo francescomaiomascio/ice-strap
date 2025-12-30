@@ -1,0 +1,6 @@
+type: object
+properties:
+  level: { type: string }
+  file: { type: string }
+  max_size: { type: string }
+  backup_count: { type: number }
