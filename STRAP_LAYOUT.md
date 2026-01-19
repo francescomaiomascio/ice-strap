@@ -9,7 +9,7 @@ No logic changes are performed in STRAP-01.
 No legacy deletion is performed in STRAP-01.
 
 ## Canonical Layout (Target)
-
+```
 ice-strap/
 ├── README.md
 ├── pyproject.toml
@@ -36,6 +36,7 @@ ice-strap/
         │   └── defaults.py
         └── typing/
             └── protocols.py
+```
 
 ## Responsibility Boundaries (Non-overlapping)
 
