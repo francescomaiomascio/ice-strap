@@ -25,6 +25,13 @@ where = ["src"]
 target-version = "py311"
 line-length = 100
 
+# ⬇️ QUESTA È LA CHIAVE
+exclude = [
+  "src/ice_strap/config_legacy",
+  "src/ice_strap/runtime_legacy",
+]
+
+
 [tool.ruff.lint]
 select = ["E", "F", "I"]
 
