@@ -1,6 +1,0 @@
-type: object
-properties:
-  realtime_monitoring: { type: boolean }
-  pattern_learning: { type: boolean }
-  smart_suggestions: { type: boolean }
-  ai_insights: { type: boolean }
