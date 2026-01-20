@@ -1,11 +1,12 @@
-# src/ice_strap/__main__.py
+"""
+ICE Strap canonical entry point.
+"""
+
+from ice_strap.bootstrap.sequence import run
 
 
 def main() -> None:
-    raise RuntimeError(
-        "ICE Strap entrypoint is defined but bootstrap sequence "
-        "is not yet implemented. This is expected until STRAP-04."
-    )
+    run()
 
 
 if __name__ == "__main__":
