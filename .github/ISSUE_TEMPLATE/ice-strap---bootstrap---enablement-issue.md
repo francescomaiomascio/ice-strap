@@ -1,13 +1,13 @@
 ---
 name: ICE Strap — Bootstrap / Enablement Issue
-about: 'Bootstrap/packaging issues for ICE Strap: determinism, scope-drift, and strap
-  → engine → runtime handoff.'
-title: ''
-labels: ''
-assignees: ''
+about: >
+  Bootstrap, packaging, and authority-boundary issues for ICE Strap.
+  Covers determinism, scope drift, and strap → engine → runtime handoff.
+title: "[STRAP-0X] "
+labels: ["ice-strap", "bootstrap"]
+assignees: []
 
 ---
-
 ## Type of Issue
 
 Select **one**:
@@ -18,7 +18,7 @@ Select **one**:
 - [ ] Packaging / distribution issue (Python package, entry points, build)
 - [ ] Documentation inconsistency / missing prerequisite
 - [ ] Compatibility regression (OS, shell, CI, Python versions)
-- [ ] Observability preboot gap (phase=preboot)
+- [ ] Preboot isolation gap (checks / discovery / context)
 
 Issues outside these categories may be closed.
 
@@ -28,11 +28,12 @@ Issues outside these categories may be closed.
 
 Provide precise references.
 
-- Project / Spec reference (required):  
-  - Project 2 item (e.g., E-01.3):  
-- Repo area / path(s) involved:  
-- Related issue(s) / PR(s):  
-- Logs / CI links (if applicable):  
+- Project / Spec reference (required):
+  - Project 2 item (e.g. **E-01.3**):
+- STRAP phase (e.g. STRAP-04, STRAP-06):
+- Repo area / path(s) involved:
+- Related issue(s) / PR(s):
+- CI / logs (if applicable):
 
 ---
 
@@ -41,24 +42,24 @@ Provide precise references.
 Describe the problem **factually and precisely**.
 
 - What fails or is ambiguous?
-- What is the expected bootstrap outcome?
-- What is the observed outcome?
-- Is the issue deterministic or intermittent?
+- What is the expected bootstrap behavior?
+- What is the observed behavior?
+- Is the issue deterministic?
 
-Avoid opinions. Avoid solution proposals at this stage.
+Avoid opinions. Avoid solution proposals here.
 
 ---
 
 ## Environment
 
-Fill in what is relevant.
+Fill what is relevant.
 
-- OS / distro:  
-- Shell:  
-- Python version:  
-- Installation method (pip/uv/poetry/source):  
-- Execution path (module, script, entry point):  
-- CI context (if any):  
+- OS / distro:
+- Shell:
+- Python version:
+- Install method (pip / uv / source):
+- Execution path (`python -m ice_strap`, CI, etc.):
+- CI context (if any):
 
 ---
 
@@ -70,18 +71,7 @@ Provide minimal, reliable steps.
 2.
 3.
 
-Include exact commands when possible.
-
----
-
-## Evidence
-
-Attach objective evidence.
-
-- Error output / stack trace:
-- Relevant snippets (small, focused):
-- Screenshots (if UI/CI):
-- Notes on frequency / determinism:
+Include exact commands.
 
 ---
 
@@ -89,31 +79,18 @@ Attach objective evidence.
 
 Confirm alignment with ICE Strap constraints:
 
-- [ ] This does not introduce new runtime/engine semantics
-- [ ] This preserves upstream authority (Foundation / Project 2 semantics)
-- [ ] This is a bootstrap/enablement concern (not a product feature)
-- [ ] This does not request changes to ice-runtime or ice-engine (unless explicitly coordinated)
+- [ ] No runtime or engine semantics introduced
+- [ ] Authority boundaries preserved
+- [ ] Bootstrap-only concern
+- [ ] No changes to ice-runtime / ice-engine unless coordinated
 
 ---
 
-## Proposed Direction (Optional)
+## Definition of Done
 
-If you propose a direction, it must be:
-
-- scoped to strap (bootstrap, packaging, preboot)
-- semantically neutral (no new execution model)
-- explicit about how it preserves Project 2 constraints
-
-Leave empty if not applicable.
-
----
-
-## Definition of Done (Optional)
-
-If relevant, state acceptance criteria in observable terms.
+Observable, verifiable criteria:
 
 - Expected entry point(s):
 - Expected bootstrap order:
-- Expected handoff properties:
-- Expected artifacts (packages, files, logs):
-- Expected CI checks:
+- Expected authority handoff properties:
+- Expected CI state:
