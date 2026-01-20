@@ -25,20 +25,14 @@ def handoff_to_engine(context: BootstrapContext) -> None:
     global _AUTHORITY_TRANSFERRED
 
     if _AUTHORITY_TRANSFERRED:
-        raise AuthorityViolationError(
-            "Authority has already been transferred from strap"
-        )
+        raise AuthorityViolationError("Authority has already been transferred from strap")
 
     if not isinstance(context, BootstrapContext):
-        raise AuthorityViolationError(
-            "Invalid bootstrap context passed to authority handoff"
-        )
+        raise AuthorityViolationError("Invalid bootstrap context passed to authority handoff")
 
     # Mark authority as irrevocably transferred
     _AUTHORITY_TRANSFERRED = True
 
     # Engine invocation is intentionally not implemented here.
     # This function defines the authority boundary only.
-    raise NotImplementedError(
-        "Engine handoff not implemented yet (STRAP-05)"
-    )
+    raise NotImplementedError("Engine handoff not implemented yet (STRAP-05)")
