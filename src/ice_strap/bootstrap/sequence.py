@@ -1,17 +1,19 @@
 """
 Canonical ICE bootstrap sequence.
 
+Defines the strict ordering:
 strap → engine → runtime
 """
 
 from ice_strap.preboot.checks import run_checks
+from ice_strap.preboot.context import BootstrapContext
 from ice_strap.preboot.discovery import (
     discover_environment,
     discover_workspace,
 )
-from ice_strap.preboot.context import BootstrapContext
-from .handoff import handoff_to_engine
+
 from .errors import SequenceViolationError
+from .handoff import handoff_to_engine
 
 
 def run() -> None:
@@ -42,6 +44,4 @@ def run() -> None:
     handoff_to_engine(context)
 
     # 6. Strap must NEVER continue after handoff
-    raise SequenceViolationError(
-        "Strap execution continued after authority handoff"
-    )
+    raise SequenceViolationError("Strap execution continued after authority handoff")
