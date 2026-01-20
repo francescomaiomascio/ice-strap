@@ -24,14 +24,11 @@ jobs:
           BRANCH="${{ github.head_ref }}"
           if [[ "$BRANCH" == strap/* || "$BRANCH" == refactor/* ]]; then
             ALLOWED_REGEX='^(src/ice_strap/|pyproject\.toml$|README\.md$|STRAP_LAYOUT\.md$|\.github/workflows/|LICENSE$|SECURITY\.md$|FOUNDATION\.md$|GOVERNANCE\.md$)'
-            FAIL=0
-            while IFS= read -r f; do
-              [[ -z "$f" ]] && continue
-              if [[ ! "$f" =~ $ALLOWED_REGEX ]]; then
-                echo "Forbidden change in refactor branch: $f"
-                FAIL=1
-              fi
-            done < changed_files.txt
+            FORBIDDEN=$(grep -Ev "$ALLOWED_REGEX" changed_files.txt || true)
 
-            [[ "$FAIL" -eq 1 ]] && exit 1
+            if [[ -n "$FORBIDDEN" ]]; then
+              echo "Forbidden changes detected:"
+              echo "$FORBIDDEN"
+              exit 1
+            fi
           fi
