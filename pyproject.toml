@@ -30,13 +30,6 @@ exclude = [
 ]
 
 
-# ⬇️ QUESTA È LA CHIAVE
-exclude = [
-  "src/ice_strap/config_legacy",
-  "src/ice_strap/runtime_legacy",
-]
-
-
 [tool.ruff.lint]
 select = ["E", "F", "I"]
 
