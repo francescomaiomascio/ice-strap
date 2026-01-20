@@ -1,182 +1,188 @@
 # ICE Strap
-## Bootstrap and System Provisioning Layer of the ICE Ecosystem
 
-ICE Strap defines the **bootstrap and provisioning layer**
-of the ICE ecosystem.
-
-It is responsible for **bringing ICE systems into existence**
-in a controlled, repeatable, and inspectable way,
-before any runtime execution, intelligence, or interaction occurs.
-
-ICE Strap does not execute workloads.
-It does not decide behavior.
-It does not remain active during normal system operation.
-
-It exists to **start ICE correctly — and then step aside**.
+> **The canonical bootstrap layer of the ICE ecosystem**  
+> Bringing ICE systems into existence — correctly, deterministically, and once.
 
 ---
 
-## Position in the ICE Ecosystem
+## What is ICE Strap
 
-ICE Strap operates at the **earliest lifecycle boundary**.
+ICE Strap is the **bootstrap and provisioning layer** of the ICE ecosystem.
 
-- Conceptual authority is defined by **ICE Foundation**
-- Execution begins only after **ICE Runtime / Engine** are active
-- Intelligence and cognition are provided by **ICE AI** and **ICE Consciousness**
+It is responsible for initializing ICE systems **before any execution,
+intelligence, or runtime behavior exists**.
 
-ICE Strap precedes execution.
-It does not participate in it.
+ICE Strap defines **how ICE starts** — and nothing more.
 
----
-
-## Purpose
-
-ICE Strap exists to:
-
-- bootstrap ICE systems deterministically
-- provision initial system structure and configuration
-- establish initial authority boundaries
-- prepare environments for Runtime and Engine
-- ensure reproducible system startup
-- support local, distributed, and automated deployments
-
-ICE Strap answers a single question:
-
-> How does an ICE system come into existence **correctly**?
+Once control is handed off to the Engine or Runtime,
+ICE Strap **permanently exits**.
 
 ---
 
-## What ICE Strap Is
+## Why ICE Strap Exists
 
-ICE Strap is:
+Most system failures are born at startup.
 
-- a **bootstrap mechanism**
-- a **provisioning and initialization layer**
-- a **controlled system entry point**
-- a **reproducibility and setup authority**
+Modern systems often:
+- mix initialization with execution
+- hide authority handoff
+- perform irreversible actions too early
+- blur responsibility boundaries
 
-It ensures that ICE systems start
-in a known, valid, and governable state.
+ICE Strap exists to make system startup:
+
+- explicit
+- deterministic
+- inspectable
+- auditable
+
+It answers one foundational question:
+
+> **How does an ICE system come into existence correctly?**
+
+---
+
+## Core Responsibilities
+
+ICE Strap is responsible for:
+
+- providing a **single authoritative entry point**
+- performing **preboot validation**
+- discovering environment and workspace context
+- creating an **immutable bootstrap context**
+- enforcing a **canonical bootstrap sequence**
+- handing off authority exactly once
+- exiting permanently after handoff
+
+ICE Strap is intentionally small.
+Every line of code is part of system birth.
+
+---
+
+## Canonical Bootstrap Sequence
+
+ICE Strap enforces a **strict, forward-only sequence**:
+
+1. Strap starts (`python -m ice_strap`)
+2. Preboot checks
+3. Environment & workspace discovery
+4. Bootstrap context creation (immutable)
+5. Topology decision (local / remote / engine target)
+6. Engine bootstrap invoked
+7. Authority handed off
+8. Strap exits permanently
+
+Any deviation from this order is invalid by design.
 
 ---
 
 ## What ICE Strap Is Not
 
-ICE Strap is **not**:
+ICE Strap **does not**:
 
-- a runtime
-- an orchestrator
-- a workflow engine
-- an intelligence layer
-- a configuration management system
-- a long-running process
+- run workloads
+- manage lifecycles
+- orchestrate agents
+- execute runtime logic
+- retry execution
+- host control loops
+- remain alive after startup
 
-Once ICE is running,
-ICE Strap is no longer involved.
+ICE Strap is not a runtime.
+It is not an orchestrator.
+It is not a controller.
 
----
-
-## Scope
-
-ICE Strap may include:
-
-- environment and workspace initialization
-- initial directory and filesystem layout
-- baseline configuration materialization
-- initial identity and trust bootstrapping
-- runtime and engine handoff logic
-- local and distributed startup flows
-- developer and CI-friendly entrypoints
-
-All actions performed by ICE Strap are:
-
-- explicit
-- deterministic
-- inspectable
-- traceable
+It is a **bootstrap boundary**.
 
 ---
 
-## Authority and Governance
+## Authority Model
 
-ICE Strap does **not** grant ongoing authority.
+ICE Strap exercises **transitional authority only**.
 
-- It may establish initial authority structures
-- It may validate preconditions
-- It may refuse to start an invalid system
+It may:
+- validate preconditions
+- refuse invalid startup
+- establish initial structure
+- transfer authority forward
 
 It may **not**:
-
 - authorize execution
-- bypass governance
-- alter system behavior after startup
+- retain control after handoff
+- call runtime directly
+- bypass governance rules
 
-All authority exercised by ICE Strap
-is transitional and auditable.
+Authority flows strictly forward:
 
----
+**Strap → Engine → Runtime**
 
-## Stability and Evolution
-
-ICE Strap is expected to be:
-
-- small
-- conservative
-- slow-changing
-
-Bootstrap logic must be more stable
-than downstream systems.
-
-Changes to ICE Strap are rare
-and treated as high-impact.
+Never backward. Never in parallel.
 
 ---
 
-## Usage
+## Position in the ICE Ecosystem
 
-ICE Strap is invoked:
+ICE Strap is one domain in a modular system:
 
-- during local development setup
-- during CI/CD provisioning
-- during deployment and initialization
-- during controlled system resets
+- **ICE Foundation**  
+  Defines axioms, invariants, and non-negotiable rules.
 
-It hands control to:
+- **ICE Strap**  
+  Brings the system into existence.
 
-- ICE Runtime
-- ICE Engine
-- orchestration layers
+- **ICE Engine**  
+  Performs reasoning and decision-making.
 
-After handoff, ICE Strap is inactive.
+- **ICE Runtime**  
+  Executes and orchestrates system behavior.
 
----
-
-## Canonical Status
-
-ICE Strap is **structurally required**,
-but **not authoritative** beyond bootstrap.
-
-If ICE Strap is incorrect,
-ICE cannot start safely.
-
-If ICE Strap is removed after startup,
-ICE remains valid.
+ICE Strap precedes all execution layers.
 
 ---
 
-## Status
+## Design Constraints (Non-Negotiable)
+
+The following are **forbidden** in ICE Strap:
+
+- runtime execution
+- subprocess runtime launch
+- long-lived loops
+- lifecycle management
+- retry semantics
+- runtime-bound logging
+- implicit authority transitions
+
+These constraints are enforced structurally and through CI guardrails.
+
+---
+
+## Project Status
 
 ICE Strap is under **active development**.
 
-Its scope is intentionally narrow
-and will remain so.
+- APIs are intentionally minimal
+- semantics are conservative
+- breaking changes are rare but high-impact
+- correctness is prioritized over convenience
+
+ICE Strap evolves slower than downstream systems — by design.
 
 ---
 
-## Notes
+## Contributing
 
-Most system failures
-are born at startup.
+Contributions are welcome, but constrained.
 
-ICE Strap exists to ensure
-**failure never starts silently**.
+Before contributing:
+- understand the canonical bootstrap sequence
+- respect forward-only authority
+- avoid introducing runtime semantics
+- preserve determinism and inspectability
+
+ICE Strap accepts **structure first**, features last.
+
+---
+
+## License
+
+This project is licensed under the terms specified in the LICENSE file.
