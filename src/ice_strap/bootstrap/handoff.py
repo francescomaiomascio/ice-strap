@@ -6,6 +6,7 @@ After handoff, strap must permanently relinquish control.
 """
 
 from ice_strap.preboot.context import BootstrapContext
+
 from .errors import AuthorityViolationError
 
 _AUTHORITY_TRANSFERRED = False
