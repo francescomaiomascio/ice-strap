@@ -83,3 +83,78 @@ STRAP-01 is considered complete when:
 - forbidden structures are explicitly enumerated
 
 Status: Frozen
+
+
+## Responsibility Boundaries (Non-overlapping)
+
+## STRAP-07 — Preboot Isolation Contract
+
+The `preboot/` layer is a **pure preparation phase**.
+
+It exists exclusively to **gather and validate facts**
+required for bootstrap sequencing.
+
+Preboot is executed **before** bootstrap
+and **outside** any execution authority.
+
+---
+
+### Allowed Responsibilities (Preboot)
+
+Preboot may perform **only**:
+
+- filesystem checks
+- environment validation
+- permission inspection
+- workspace discovery
+- construction of an immutable `BootstrapContext`
+
+Optional:
+- diagnostic output
+- non-interactive preboot UI
+- human-readable validation feedback
+
+---
+
+### Forbidden Responsibilities (Preboot)
+
+Preboot must **never**:
+
+- start or control execution
+- invoke engine or runtime
+- make policy decisions
+- transfer authority
+- enforce ordering
+- mutate filesystem state
+- spawn processes
+- perform network calls
+- run loops or long-lived logic
+
+If any of the above occurs, preboot is **invalid**.
+
+---
+
+### Authority and Semantics
+
+- Preboot owns **no authority**
+- Preboot does **not decide**
+- Preboot does **not execute**
+- Preboot does **not persist**
+
+Preboot outputs exactly one artifact:
+
+
+This artifact is:
+- immutable
+- passed forward exactly once
+- consumed by bootstrap
+- never modified by preboot after creation
+
+---
+
+### Relationship to Bootstrap
+
+- Preboot gathers facts
+- Bootstrap enforces order
+- Authority transfer happens **after preboot**
+- Preboot cannot influence sequencing
