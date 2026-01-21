@@ -1,25 +1,20 @@
 """
-Environment and workspace discovery.
+Preboot discovery.
+
+This module gathers facts about the execution environment
+and workspace without making decisions.
 """
 
-from typing import Any, Dict
 
-
-def discover_environment() -> Dict[str, Any]:
+def discover_environment():
     """
-    Discover execution environment details.
-
-    Examples:
-    - local vs remote
-    - platform info
+    Discover execution environment characteristics.
     """
-    # TODO: implement in STRAP-06
     return {}
 
 
-def discover_workspace() -> Dict[str, Any]:
+def discover_workspace():
     """
-    Discover workspace configuration and paths.
+    Discover workspace characteristics.
     """
-    # TODO: implement in STRAP-06
     return {}
