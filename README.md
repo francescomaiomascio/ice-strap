@@ -38,6 +38,9 @@ ICE Strap exists to make system startup:
 
 It answers one foundational question:
 
+If ICE Strap fails, the system does not start.
+Failure at bootstrap is considered safer than partial existence.
+
 > **How does an ICE system come into existence correctly?**
 
 ---
@@ -53,6 +56,9 @@ ICE Strap is responsible for:
 - enforcing a **canonical bootstrap sequence**
 - handing off authority exactly once
 - exiting permanently after handoff
+
+ICE Strap maintains no long-lived state.
+All bootstrap context is immutable and passed forward exactly once.
 
 ICE Strap is intentionally small.
 Every line of code is part of system birth.
@@ -126,6 +132,8 @@ ICE Strap is one domain in a modular system:
 
 - **ICE Foundation**  
   Defines axioms, invariants, and non-negotiable rules.
+
+  ICE Strap enforces Foundation invariants at birth, but does not define them.
 
 - **ICE Strap**  
   Brings the system into existence.
